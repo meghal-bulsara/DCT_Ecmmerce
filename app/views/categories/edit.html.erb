@@ -1,0 +1,18 @@
+<h2>Edit Category</h2>
+
+<%= form_for @category do |f| %>
+<!-- <label>Name : </label> -->
+<% if @category.errors.any? %>
+  <h3>Errors : </h3>
+  <ul>
+  <% @category.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br/>
+  <%= f.submit "Submit" %><br/>
+  <%= link_to "back", category_path(@category.id) %> <br/>
+  <%= link_to "List", categories_path %>
+<% end %>

@@ -1,0 +1,22 @@
+<h2>Listing Categories : <%= @categories.length %></h2>
+<%if @categories.empty? %>
+  <p>Category is not been added yet</p>
+<% else %>
+  <ol>
+    <% @categories.each do |category| %>
+      <li>
+        <%= link_to category.name, category_path(category.id)%>
+        (<%= Product.where('category_id = ?', category.id).length %>)
+        
+      </li>
+    <% end %>
+  </ol>
+<% end %>
+
+
+<% if user_signed_in? && current_user.is_admin %>
+  <%= link_to "Add Category (ror best)", new_category_path %>
+<% end %>
+<!-- new_category_path return string "/categories/new" -->
+<%#= link_to "Add Category (ror)", "/categories/new" %>
+<!-- <a href="/categories/new" target="_blank">Add Category </a>` -->

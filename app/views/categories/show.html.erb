@@ -1,0 +1,60 @@
+<h2><%= @category.name %></h2>
+
+<% if user_signed_in? && current_user.is_admin %>
+  <%= link_to "Edit", edit_category_path(@category.id) %> |
+  <%= link_to "destroy", category_path(@category.id), method: :delete, data: {confirm: "Are you sure?"} %>
+  <% end %>
+ | <%= link_to "Back", categories_path %>
+
+<% @category.sub_categories.each do |sub_category| %>
+  <h3><%= link_to sub_category.name.upcase, sub_category_path(sub_category.id) %>(<%= sub_category.products.size %>)</h3>
+  <ul>
+    <% sub_category.products.each do |product| %>
+      <li><%= link_to product.name, product_path(product.id)  %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+ <!--  <% products_lessthan_500 = Product.where('price < ? AND category_id = ?', 500, @category.id) %>
+  <% products_greater_500 = Product.where('price > ? AND category_id = ?', 500, @category.id) %>
+
+  <% if @products.empty? %>
+    <p> No Products Found </p>
+  <% else %>
+    <ol>
+      <% @products.each do |product| %>
+        <li>
+            <%= link_to product.name, product_path(product.id) %> INR <%= product.price %> Stock - <%= product.stock %>
+          </li>
+        <% end %>
+    </ol>
+  <% end %>
+
+
+  <p>Product less than 500 ===== <%= products_lessthan_500.length %></p>
+  <% if products_lessthan_500.empty? %>
+    <p> No Product Found </p>
+  <% else %>
+    <ol>
+      <% products_lessthan_500.each do |product| %>
+        <li>
+            <%= product.name %> INR <%= product.price %> Stock - <%= product.stock %>
+          </li>
+        <% end %>
+    </ol>
+  <% end %>
+
+
+  <p>Product greater than 500 ===== <%= products_greater_500.length %></p>
+  <% if products_greater_500.empty? %>
+    <p> No Product Found </p>
+  <% else %>
+    <ol>
+      <% products_greater_500.each do |product| %>
+        <li>
+            <%= product.name %> INR <%= product.price %> Stock - <%= product.stock %>
+          </li>
+        <% end %>
+    </ol>
+  <% end %> -->
+  

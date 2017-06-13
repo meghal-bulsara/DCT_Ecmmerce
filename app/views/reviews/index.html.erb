@@ -1,0 +1,10 @@
+<h2>Reviews</h2>
+
+<ol>
+  <% @reviews.each do |review| %>
+  <h3><%= link_to review.product.name, product_path(review.product.id) %></h3>
+   <li> <%= review.title %><br/>
+    <%= review.body %><br/></li>
+  <% end %>
+</ol>
+<%= link_to "Back", products_path %>
